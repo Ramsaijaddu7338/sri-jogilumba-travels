@@ -16,14 +16,21 @@
         :root {
             --primary: #1a6fc4;
             --primary-dark: #0d4a8a;
+            --primary-light: #4a9be6;
             --accent: #e63946;
             --accent-dark: #c1121f;
+            --accent-light: #ff6b7a;
+            --gold: #FFD700;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
             --light: #f8f9fa;
             --dark: #212529;
             --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
             --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            --gradient-gold: linear-gradient(135deg, #FFD700, #FFA500);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.2);
         }
         
         * {
@@ -168,36 +175,6 @@
             animation: pulse 3s infinite ease-in-out;
         }
         
-        .dot:nth-child(1) {
-            top: 15%;
-            left: 15%;
-            animation-delay: 0s;
-        }
-        
-        .dot:nth-child(2) {
-            top: 75%;
-            left: 85%;
-            animation-delay: 0.5s;
-        }
-        
-        .dot:nth-child(3) {
-            top: 35%;
-            left: 90%;
-            animation-delay: 1s;
-        }
-        
-        .dot:nth-child(4) {
-            top: 85%;
-            left: 25%;
-            animation-delay: 1.5s;
-        }
-        
-        .dot:nth-child(5) {
-            top: 50%;
-            left: 5%;
-            animation-delay: 2s;
-        }
-        
         @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
@@ -209,42 +186,154 @@
             }
         }
         
-        /* Custom Navigation - Fixed for Mobile */
+        /* UPDATED: Modern Navigation with Attractive Toggle */
         .navbar {
-            background: rgba(0, 46, 60, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
+            background: linear-gradient(135deg, rgba(0, 46, 60, 0.98) 0%, rgba(26, 111, 196, 0.98) 100%);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             padding: 15px 0;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 1000;
-            color: #ffffff;
+            border-bottom: 3px solid var(--accent);
         }
         
         .navbar.scrolled {
             padding: 10px 0;
-            background: rgba(0, 46, 60, 0.95);
+            background: linear-gradient(135deg, rgba(0, 46, 60, 1) 0%, rgba(26, 111, 196, 1) 100%);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
         }
         
         .navbar-brand {
             display: flex;
             align-items: center;
             font-weight: 800;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             color: white;
             text-decoration: none;
+            margin-right: 0;
+            flex-wrap: wrap;
+            position: relative;
+            padding: 5px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
+        
+        
         
         .logo-img {
             height: 50px;
-            margin-right: 10px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar-brand:hover .logo-img {
+            transform: rotate(-5deg) scale(1.05);
+        }
+        
+        .brand-text {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .full-name {
+            display: inline-block;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #fff, #ffcccb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* UPDATED: Modern Attractive Toggle Button */
+        .navbar-toggler {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border: none;
+            border-radius: 12px;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(57, 195, 230, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .navbar-toggler:hover {
+            transform: translateY(-3px) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(61, 187, 241, 0.6);
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+        }
+        
+        .navbar-toggler:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(61, 187, 241, 0.6), 0 8px 25px rgba(230, 57, 70, 0.6);
+        }
+        
+        .navbar-toggler span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .navbar-toggler[aria-expanded="true"] span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+            width: 24px;
+        }
+        
+        .navbar-toggler[aria-expanded="true"] span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        
+        .navbar-toggler[aria-expanded="true"] span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+            width: 24px;
+        }
+        
+        .navbar-toggler span:nth-child(1) {
+            transform: translateY(-3px);
+        }
+        
+        .navbar-toggler span:nth-child(3) {
+            transform: translateY(3px);
         }
         
         .nav-link {
             font-weight: 600;
-            margin: 0 8px;
+            margin: 0 5px;
             color: white;
             position: relative;
             transition: all 0.3s;
+            padding: 10px 20px !important;
+            border-radius: 10px;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(57, 169, 230, 0.2), rgba(65, 146, 239, 0.1));
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: -1;
         }
         
         .nav-link::after {
@@ -254,68 +343,150 @@
             height: 3px;
             background: var(--gradient-accent);
             bottom: 0;
-            left: 0;
-            transition: width 0.3s;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border-radius: 3px;
+        }
+        
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: 100%;
         }
         
         .nav-link:hover::after,
         .nav-link.active::after {
-            width: 100%;
+            width: 80%;
         }
         
         .nav-link:hover {
-            color: #ffcccb;
+            color: white;
+            transform: translateY(-2px);
         }
         
-        /* Mobile Navigation Fixes */
+        .nav-link.active {
+            color: white;
+            font-weight: 700;
+        }
+        
+        /* UPDATED: Mobile Navigation Styles */
         @media (max-width: 991px) {
             .navbar-brand {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
+                width: calc(100% - 70px);
             }
             
             .logo-img {
                 height: 40px;
-                margin-right: 8px;
+                margin-right: 10px;
+            }
+            
+            .navbar-toggler {
+                width: 45px;
+                height: 45px;
+                position: absolute;
+                right: 30px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            .navbar-toggler span {
+                width: 22px;
+                height: 2.5px;
             }
             
             .navbar-collapse {
-                background: rgba(0, 46, 60, 0.95);
-                margin-top: 10px;
-                border-radius: 10px;
-                padding: 15px;
+                background: linear-gradient(135deg, rgba(0, 46, 60, 0.98) 0%, rgba(26, 111, 196, 0.98) 100%);
+                margin-top: 20px;
+                border-radius: 20px;
+                padding: 20px;
+                backdrop-filter: blur(20px);
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             }
             
             .nav-link {
-                margin: 5px 0;
-                padding: 8px 15px;
+                margin: 8px 0;
+                padding: 15px 20px !important;
+                text-align: center;
+                font-size: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: all 0.3s ease;
+            }
+            
+            .nav-link:hover {
+                background: rgba(255, 255, 255, 0.1);
+                transform: translateX(10px);
+                border-color: var(--primary-light);
+            }
+            
+            .nav-link::before {
+                display: none;
+            }
+            
+            .nav-link::after {
+                display: none;
+            }
+            
+            .nav-link.active {
+                background: linear-gradient(135deg, rgba(17, 124, 247, 0.3), rgba(12, 255, 247, 0.2));
+                border-color: var(--primary-light);
+                transform: translateX(10px);
             }
         }
         
+        /* Extra small devices */
         @media (max-width: 576px) {
             .navbar-brand {
                 font-size: 1.2rem;
+                width: calc(100% - 60px);
             }
             
             .logo-img {
                 height: 35px;
-                margin-right: 6px;
+                margin-right: 8px;
+            }
+            
+            .full-name {
+                font-size: 1.1rem;
+                line-height: 1.1;
             }
             
             .navbar-toggler {
-                padding: 4px 8px;
-                font-size: 0.9rem;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .navbar-toggler span {
+                width: 20px;
+                height: 2px;
             }
         }
         
+        /* Very small devices */
         @media (max-width: 400px) {
             .navbar-brand {
+                font-size: 1.1rem;
+            }
+            
+            .full-name {
                 font-size: 1rem;
             }
             
             .logo-img {
                 height: 30px;
-                margin-right: 5px;
+                margin-right: 6px;
+            }
+            
+            .navbar-toggler {
+                width: 38px;
+                height: 38px;
+                gap: 5px;
+            }
+            
+            .navbar-toggler span {
+                width: 18px;
+                height: 2px;
             }
         }
         
@@ -350,32 +521,51 @@
             font-weight: 800;
             margin-bottom: 20px;
             line-height: 1.2;
+            background: linear-gradient(135deg, #fff, #a0d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .hero-subtitle {
             font-size: 1.5rem;
             margin-bottom: 30px;
             opacity: 0.9;
+            color: #e0f0ff;
         }
         
         .hero-badge {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 20px;
+            background: linear-gradient(135deg, rgba(79, 239, 239, 0.9), rgba(42, 228, 245, 0.9));
+            padding: 10px 25px;
             border-radius: 50px;
             font-weight: 600;
             margin-bottom: 20px;
             backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 8px 20px rgba(61, 187, 241, 0.6);
+            animation: pulse-badge 2s infinite;
+        }
+        
+        @keyframes pulse-badge {
+            0%, 100% {
+                box-shadow: 0 8px 20px rgba(61, 187, 241, 0.6);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(230, 57, 70, 0.5);
+            }
         }
         
         .hero-image {
             position: relative;
             z-index: 1;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow-lg);
             transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
             transition: transform 0.5s;
+            border: 5px solid rgba(255, 255, 255, 0.1);
         }
         
         .hero-image:hover {
@@ -389,30 +579,56 @@
         }
         
         .btn-primary {
-            background: var(--gradient-accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
             border: none;
-            padding: 14px 35px;
+            padding: 15px 40px;
             font-weight: 600;
             border-radius: 50px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba(61, 187, 241, 0.6);
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
         }
         
         .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(230, 57, 70, 0.4);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(61, 187, 241, 0.6);
         }
         
         .btn-outline-light {
-            padding: 14px 35px;
+            padding: 15px 40px;
             font-weight: 600;
             border-radius: 50px;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
         }
         
         .btn-outline-light:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
         }
         
         /* Section Styling */
@@ -437,117 +653,28 @@
             background: linear-gradient(135deg, #f8f9fa, #e8f5e8);
         }
         
-        /* Feature Cards */
-        .feature-card {
+        /* Why Choose Us Section - Modern Cards */
+        .why-choose-us-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card-modern {
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 40px 30px;
             box-shadow: var(--shadow);
-            transition: all 0.4s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             height: 100%;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-top: 4px solid transparent;
             z-index: 1;
         }
         
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient-accent);
-            z-index: 2;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            color: white;
-            font-size: 2rem;
-            transition: all 0.4s;
-        }
-        
-        .feature-card:hover .feature-icon {
-            background: var(--gradient-accent);
-            transform: scale(1.1) rotate(5deg);
-        }
-        
-        /* Fleet Cards */
-        .fleet-card {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            height: 300px;
-            box-shadow: var(--shadow);
-            transition: all 0.4s;
-        }
-        
-        .fleet-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .fleet-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .fleet-card:hover img {
-            transform: scale(1.1);
-        }
-        
-        .fleet-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white;
-            padding: 25px;
-        }
-        
-        .fleet-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--accent);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        /* Services */
-        .service-card {
-            background: white;
-            border-radius: 15px;
-            padding: 40px 30px;
-            box-shadow: var(--shadow);
-            transition: all 0.4s;
-            height: 100%;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card::before {
+        .feature-card-modern::before {
             content: '';
             position: absolute;
             top: 0;
@@ -560,650 +687,249 @@
             z-index: -1;
         }
         
-        .service-card:hover::before {
-            opacity: 1;
+        .feature-card-modern:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            border-top: 4px solid var(--accent);
         }
         
-        .service-card:hover {
-            color: white;
-            transform: translateY(-10px);
+        .feature-card-modern:hover::before {
+            opacity: 0.05;
         }
         
-        .service-card:hover .service-icon {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-        
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--light);
-            border-radius: 50%;
+        .feature-icon-modern {
+            width: 90px;
+            height: 90px;
+            background: var(--gradient);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 25px;
-            color: var(--primary);
-            font-size: 1.8rem;
+            color: white;
+            font-size: 2.2rem;
             transition: all 0.4s;
-        }
-        
-        /* Testimonials */
-        .testimonial-card {
-            background: white;
-            border-radius: 15px;
-            padding: 40px 30px;
-            box-shadow: var(--shadow);
             position: relative;
-            margin-bottom: 30px;
-            transition: all 0.4s;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .testimonial-card::before {
-            content: '\201C';
-            font-size: 6rem;
-            color: var(--primary);
-            opacity: 0.1;
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            line-height: 1;
-            font-family: serif;
-        }
-        
-        .stars {
-            color: #ffc107;
-            margin-bottom: 15px;
-        }
-        
-        .client-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-        }
-        
-        /* Gallery */
-        .gallery-item {
-            position: relative;
-            border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 25px;
-            height: 250px;
-            box-shadow: var(--shadow);
-            transition: all 0.4s;
         }
         
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.5s;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-overlay {
+        .feature-icon-modern::after {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
         }
         
-        .gallery-item:hover .gallery-overlay {
+        .feature-card-modern:hover .feature-icon-modern {
+            background: var(--gradient-accent);
+            transform: rotateY(180deg) scale(1.1);
+        }
+        
+        .feature-card-modern:hover .feature-icon-modern::after {
+            transform: translateX(100%);
+        }
+        
+        /* NEW: Our Services Section - Interactive Cards */
+        .services-section {
+            background: linear-gradient(135deg, #ffffff, #f1f3f4);
+        }
+        
+        .service-card-modern {
+            background: white;
+            border-radius: 20px;
+            padding: 0;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid transparent;
+        }
+        
+        .service-card-modern:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-light);
+        }
+        
+        .service-header {
+            background: var(--gradient);
+            padding: 25px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .service-card-modern:hover .service-header::before {
+            transform: translateX(100%);
+        }
+        
+        .service-icon-modern {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .service-content {
+            padding: 30px;
+        }
+        
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .service-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .service-features li i {
+            color: var(--accent);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .service-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(61, 187, 241, 0.6);
+        }
+        
+        /* Our Fleet Section - 3D Cards */
+        .fleet-section {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+        }
+        
+        .fleet-card-3d {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 350px;
+            box-shadow: var(--shadow);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+        .fleet-card-3d:hover {
+            transform: translateY(-20px) rotateX(5deg);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .fleet-card-3d img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s;
+        }
+        
+        .fleet-card-3d:hover img {
+            transform: scale(1.15);
+        }
+        
+        .fleet-overlay-3d {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: white;
+            padding: 30px;
+            transform: translateY(20px);
+            transition: all 0.4s;
+            opacity: 0.9;
+        }
+        
+        .fleet-card-3d:hover .fleet-overlay-3d {
+            transform: translateY(0);
             opacity: 1;
         }
         
-        /* About Us Section Styling */
-        .about-image {
-            border-radius: 15px;
+        .fleet-badge-3d {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-gold);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            z-index: 2;
+        }
+        
+        .fleet-specs {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .fleet-spec {
+            text-align: center;
+        }
+        
+        .fleet-spec i {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        /* Our Own Bus Garage Section */
+        .garage-section {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            transition: all 0.5s;
-            max-width: 350px;
-            margin: 0 auto;
         }
         
-        .about-image:hover {
-            transform: scale(1.03);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: auto;
-            transition: transform 0.5s;
-        }
-        
-        .about-image:hover img {
-            transform: scale(1.1);
-        }
-        
-        .proprietor-info {
-            background: rgba(26, 111, 196, 0.05);
-            border-radius: 15px;
-            padding: 30px;
-            margin-top: 30px;
+        .garage-intro-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+            margin-bottom: 40px;
             border-left: 5px solid var(--accent);
         }
         
-        /* Contact Section Styling */
-        .contact-section {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            padding: 100px 0;
-        }
-        
-        .contact-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .contact-header h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-        }
-        
-        .contact-header p {
-            font-size: 1.2rem;
-            color: var(--dark);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .contact-info-card {
-            background: white;
-            border-radius: 15px;
-            padding: 40px 30px;
-            box-shadow: var(--shadow);
-            height: 100%;
-            transition: all 0.4s;
-        }
-        
-        .contact-info-card:hover {
+        .garage-intro-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-lg);
-        }
-        
-        .contact-info-card h3 {
-            color: var(--primary-dark);
-            margin-bottom: 30px;
-            font-size: 1.8rem;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .contact-info-card h3::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 4px;
-            background: var(--gradient-accent);
-            bottom: 0;
-            left: 0;
-            border-radius: 2px;
-        }
-        
-        .contact-detail {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 25px;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            margin-right: 20px;
-            flex-shrink: 0;
-            transition: all 0.3s;
-        }
-        
-        .contact-detail:hover .contact-icon {
-            background: var(--gradient-accent);
-            transform: scale(1.1);
-        }
-        
-        .contact-text h5 {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--dark);
-        }
-        
-        .contact-text p {
-            margin: 0;
-            color: var(--dark);
-        }
-        
-        .contact-text a {
-            color: var(--dark);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .contact-text a:hover {
-            color: var(--primary);
-        }
-        
-        .contact-form-card {
-            background: white;
-            border-radius: 15px;
-            padding: 40px 30px;
-            box-shadow: var(--shadow);
-            transition: all 0.4s;
-        }
-        
-        .contact-form-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .contact-form-card h3 {
-            color: var(--primary-dark);
-            margin-bottom: 30px;
-            font-size: 1.8rem;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .contact-form-card h3::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 4px;
-            background: var(--gradient-accent);
-            bottom: 0;
-            left: 0;
-            border-radius: 2px;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-control {
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 12px 15px;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 0.2rem rgba(26, 111, 196, 0.25);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background: var(--gradient-accent);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
-            width: 100%;
-            font-size: 1.1rem;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(230, 57, 70, 0.4);
-        }
-        
-        /* Map Section */
-        .map-container {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            margin-top: 50px;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 80px 0 20px;
-        }
-        
-        .footer-logo {
-            font-weight: 800;
-            font-size: 2rem;
-            background: white;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-            display: block;
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            margin-right: 12px;
-            transition: all 0.3s;
-        }
-        
-        .social-icons a:hover {
-            background: var(--accent);
-            transform: translateY(-5px);
-        }
-        
-        /* Animations */
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(230, 57, 70, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
-        }
-        
-        /* New Animations */
-        .slide-in-left {
-            animation: slideInLeft 0.8s ease-out;
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                transform: translateX(-100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        .slide-in-right {
-            animation: slideInRight 0.8s ease-out;
-        }
-        
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        .zoom-in {
-            animation: zoomIn 0.8s ease-out;
-        }
-        
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
-        .bounce-in {
-            animation: bounceIn 0.8s ease-out;
-        }
-        
-        @keyframes bounceIn {
-            0% {
-                transform: scale(0.3);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.05);
-                opacity: 1;
-            }
-            70% {
-                transform: scale(0.9);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
-        /* Parallax Effect */
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        /* New Card Styles */
-        .modern-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .modern-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient-accent);
-        }
-        
-        .modern-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Gradient Text */
-        .gradient-text {
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Our Own Bus Garage Section Styling */
-        .garage-section {
-            background: linear-gradient(135deg, #ffffff, #f8f9fa);
-            padding: 100px 0;
-        }
-        
-        .garage-card {
-            background: white;
-            border-radius: 15px;
-            padding: 0;
-            box-shadow: var(--shadow);
-            transition: all 0.4s;
-            height: 100%;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-top: 5px solid var(--accent);
-        }
-        
-        .garage-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .garage-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .garage-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .garage-card:hover .garage-image img {
-            transform: scale(1.1);
-        }
-        
-        .garage-content {
-            padding: 25px;
-        }
-        
-        .garage-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: -50px auto 20px;
-            color: white;
-            font-size: 1.8rem;
-            transition: all 0.4s;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .garage-card:hover .garage-icon {
-            background: var(--gradient-accent);
-            transform: scale(1.1);
-        }
-        
-        .garage-feature {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .garage-feature-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            margin-right: 15px;
-            flex-shrink: 0;
-            transition: all 0.3s;
-        }
-        
-        .garage-feature:hover .garage-feature-icon {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .benefit-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-            transition: all 0.4s;
-            height: 100%;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-left: 5px solid var(--primary);
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .benefit-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: white;
-            font-size: 1.5rem;
         }
         
         .garage-main-image {
@@ -1228,7 +954,571 @@
             transform: scale(1.1);
         }
         
-        /* Mobile Responsive Adjustments */
+        /* How Our Garage Benefits You - MOBILE FIXED */
+        .benefit-timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .benefit-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: var(--gradient);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .benefit-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .benefit-icon-timeline {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.8rem;
+            box-shadow: var(--shadow);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            transition: all 0.4s;
+            border: 4px solid white;
+        }
+        
+        .benefit-item:hover .benefit-icon-timeline {
+            background: var(--gradient-accent);
+            color: white;
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 10px 25px rgba(61, 187, 241, 0.6);
+        }
+        
+        .benefit-content {
+            width: 45%;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+            position: relative;
+        }
+        
+        .benefit-item:nth-child(odd) .benefit-content {
+            margin-right: 5%;
+        }
+        
+        .benefit-item:nth-child(even) .benefit-content {
+            margin-left: 5%;
+        }
+        
+        .benefit-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .benefit-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: white;
+            transform: translateY(-50%) rotate(45deg);
+        }
+        
+        .benefit-item:nth-child(odd) .benefit-content::before {
+            right: -10px;
+        }
+        
+        .benefit-item:nth-child(even) .benefit-content::before {
+            left: -10px;
+        }
+        
+        /* Testimonials Section - Carousel Style */
+        .testimonials-section {
+            background: linear-gradient(135deg, #ffffff, #f1f3f4);
+        }
+        
+        .testimonial-carousel-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin: 20px;
+            position: relative;
+            transition: all 0.4s;
+            border-left: 5px solid var(--accent);
+            height: 100%;
+        }
+        
+        .testimonial-carousel-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .testimonial-rating {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .testimonial-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: var(--primary-light);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .author-info h5 {
+            margin-bottom: 5px;
+            color: var(--primary-dark);
+        }
+        
+        .author-info p {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .testimonial-quote {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            color: var(--primary-light);
+            opacity: 0.1;
+            font-size: 5rem;
+        }
+        
+        /* NEW: Contact Section with Backend */
+        .contact-section {
+            background: linear-gradient(135deg, #002e3c, #1a6fc4);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.03" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+        }
+        
+        .contact-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .contact-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info h4 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: white;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .contact-info h4::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-accent);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover i {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .contact-item div h5 {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: white;
+        }
+        
+        .contact-item div p,
+        .contact-item div a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            margin: 0;
+        }
+        
+        .contact-item div a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-icons a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-icons a:hover {
+            background: var(--gradient-accent);
+            transform: translateY(-5px);
+            border-color: transparent;
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-form h4 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: white;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .contact-form h4::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-accent);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(61, 187, 241, 0.6);
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 1rem;
+            color: white;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent);
+            color: white;
+            box-shadow: 0 0 0 0.2rem rgba(54, 156, 239, 0.25);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-royal {
+            background: var(--gradient-accent);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(61, 187, 241, 0.6);
+            width: 100%;
+            font-size: 1.1rem;
+        }
+        
+        .btn-royal:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(61, 187, 241, 0.6);
+            color: white;
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        /* Map Styles */
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        
+        .map-wrapper {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .map-header {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .map-header i {
+            margin-bottom: 15px;
+            display: block;
+            color: var(--accent-light);
+        }
+        
+        .map-header h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .map-header p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .map-frame {
+            width: 100%;
+            height: 400px;
+            border: none;
+            display: block;
+        }
+         .location-info {
+            padding: 25px;
+            background: #7bbaf9;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .location-info h5 {
+            color: #1a6fc4;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .location-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .detail-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .detail-card h6 {
+            color: #0d4a8a;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .detail-card p {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            
+        }
+        
+        .btn {
+            background: #1a6fc4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background: #0d4a8a;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, rgba(0, 46, 60, 0.98) 0%, rgba(26, 111, 196, 0.98) 100%);
+            color: white;
+            padding: 80px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+        }
+        
+        .footer-logo {
+            font-weight: 800;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #fff, #a0d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(10px);
+            border-color: var(--accent);
+        }
+        
+        /* Responsive Design - MOBILE FIXES */
+        @media (max-width: 992px) {
+            .navbar-brand {
+                max-width: 80%;
+            }
+        }
+        
         @media (max-width: 768px) {
             .hero-section {
                 padding: 130px 0 80px;
@@ -1251,38 +1541,201 @@
                 font-size: 2rem;
             }
             
-            .contact-header h1 {
+            .contact-header h2 {
                 font-size: 2.5rem;
             }
             
-            .about-image {
-                margin-top: 30px;
+            /* Garage Benefits Timeline - Mobile Fix */
+            .benefit-timeline::before {
+                left: 30px;
             }
             
-            /* Mobile Navigation Brand Name Fix */
-            .navbar-brand span.full-name {
-                display: none;
+            .benefit-item,
+            .benefit-item:nth-child(even) {
+                flex-direction: row;
+                margin-left: 80px;
+                margin-bottom: 40px;
             }
             
-            .navbar-brand span.short-name {
-                display: inline;
-            }
-            
-            .garage-image {
-                height: 150px;
-            }
-            
-            .garage-icon {
-                margin-top: -40px;
+            .benefit-icon-timeline {
+                left: 30px;
+                transform: translateX(0);
                 width: 60px;
                 height: 60px;
                 font-size: 1.5rem;
             }
+            
+            .benefit-item:hover .benefit-icon-timeline {
+                transform: scale(1.1);
+            }
+            
+            .benefit-content {
+                width: 100%;
+                margin: 0 !important;
+                padding: 25px 20px;
+            }
+            
+            .benefit-content::before {
+                left: -10px !important;
+                right: auto !important;
+            }
+            
+            /* Testimonials Mobile Fix */
+            .testimonial-carousel-card {
+                margin: 10px 5px;
+                padding: 25px 20px;
+            }
+            
+            .testimonial-text {
+                font-size: 1rem;
+                padding-left: 15px;
+            }
+            
+            .testimonial-author {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .author-avatar {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            
+            .testimonial-quote {
+                font-size: 3rem;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .map-frame {
+                height: 350px;
+            }
+            
+            .garage-main-image img {
+                height: 250px;
+            }
+            
+            .garage-service-image {
+                height: 180px;
+            }
+            
+            .fleet-card-3d {
+                height: 300px;
+            }
+            
+            .fleet-overlay-3d {
+                padding: 20px;
+            }
+            
+            .feature-icon-modern {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+            
+            .feature-card-modern {
+                padding: 30px 20px;
+            }
+            
+            .btn-primary,
+            .btn-outline-light {
+                padding: 12px 30px;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 10px;
+            }
         }
         
-        @media (min-width: 769px) {
-            .navbar-brand span.short-name {
-                display: none;
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+                width: calc(100% - 60px);
+            }
+            
+            .logo-img {
+                height: 35px;
+                margin-right: 8px;
+            }
+            
+            .full-name {
+                font-size: 1.1rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .contact-header h2 {
+                font-size: 2rem;
+            }
+            
+            .benefit-item,
+            .benefit-item:nth-child(even) {
+                margin-left: 70px;
+            }
+            
+            .benefit-icon-timeline {
+                left: 30px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .benefit-content {
+                padding: 20px 15px;
+            }
+            
+            .garage-intro-card {
+                padding: 25px 20px;
+            }
+            
+            .testimonial-carousel-card {
+                margin: 10px 0;
+                padding: 20px 15px;
+            }
+            
+            .testimonial-text {
+                font-size: 0.95rem;
+                padding-left: 10px;
+            }
+            
+            .testimonial-rating {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .benefit-item,
+            .benefit-item:nth-child(even) {
+                margin-left: 60px;
+            }
+            
+            .benefit-icon-timeline {
+                left: 25px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+            
+            .full-name {
+                font-size: 1rem;
+            }
+            
+            .logo-img {
+                height: 30px;
             }
         }
     </style>
@@ -1305,17 +1758,20 @@
         <div class="dot"></div>
     </div>
     
-    <!-- Navigation -->
+    <!-- UPDATED: Modern Navigation with Attractive Toggle -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <!-- Replace with your logo image -->
                 <img src="sj Travels logo png1.png" alt="Sri Jogulamba Travels Logo" class="logo-img">
-                <span class="full-name">Sri Jogulamba Travels</span>
-                <span class="short-name">Sri Jogulamba Travels</span>
+                <span class="brand-text">
+                    <span class="full-name">Sri Jogulamba Travels</span>
+                </span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="background-color: white;">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
@@ -1329,10 +1785,10 @@
                         <a class="nav-link" href="#services">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#garage">Our Garage</a>
+                        <a class="nav-link" href="#fleet">Our fleet</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#gallery">Gallery</a>
+                        <a class="nav-link" href="#garage">Our Garage</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#contact">Contact</a>
@@ -1347,7 +1803,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 hero-content" data-aos="fade-right" data-aos-duration="1000">
-                    <span class="hero-badge">15+ Years of Service</span>
+                    
                     <h1 class="hero-title">Sri Jogulamba Travels</h1>
                     <h3 class="hero-subtitle">Tours & Travels</h3>
                     <p class="mb-4">All Kinds of Luxury Buses & Sleeper Bus Available</p>
@@ -1362,7 +1818,6 @@
                 </div>
                 <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div class="hero-image floating">
-                        <!-- Replace with your luxury bus image -->
                         <img src="image1.jpg" alt="Luxury Bus" class="img-fluid">
                     </div>
                 </div>
@@ -1384,8 +1839,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-4 mb-5 mb-lg-0" data-aos="fade-right">
                     <div class="about-image">
-                        <!-- Replace with your proprietor image -->
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="P. Radha Krishna Reddy - Proprietor" class="img-fluid">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="P. Radha Krishna Reddy - Proprietor" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-lg-8" data-aos="fade-left" data-aos-delay="200">
@@ -1397,53 +1851,65 @@
                         <h4 class="mb-3">Proprietor: P. Radha Krishna Reddy</h4>
                         <p class="mb-0">With a vision to revolutionize road travel, we continue to expand our services while maintaining our commitment to quality and customer satisfaction.</p>
                     </div>
-                    
-                    
                 </div>
-                <div class="row mt-4">
-                        <div class="col-md-6 mb-4">
-                            <div class="feature-card">
-                                <div class="feature-icon">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <h4>On-time Service</h4>
-                                <p>We value your time and ensure punctual departures and arrivals.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div class="feature-card">
-                                <div class="feature-icon">
-                                    <i class="fas fa-satellite-dish"></i>
-                                </div>
-                                <h4>GPS Enabled</h4>
-                                <p>Real-time tracking for safety and accurate arrival estimates.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div class="feature-card">
-                                <div class="feature-icon">
-                                    <i class="fas fa-user-tie"></i>
-                                </div>
-                                <h4>Professional Drivers</h4>
-                                <p>Experienced, trained, and courteous drivers for your safety.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div class="feature-card">
-                                <div class="feature-icon">
-                                    <i class="fas fa-headset"></i>
-                                </div>
-                                <h4>24/7 Support</h4>
-                                <p>Round-the-clock customer service for all your travel needs.</p>
-                            </div>
-                        </div>
-                    </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="section-padding bg-section-2 bg-animation" id="services">
+    <!-- Why Choose Us Section -->
+    <section class="section-padding why-choose-us-section" id="why-choose-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title" data-aos="fade-up">
+                        <h2>Why Choose Our Services</h2>
+                        <p>Experience the Difference with Sri Jogulamba Travels</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="feature-card-modern">
+                        <div class="feature-icon-modern">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Safety First</h4>
+                        <p>Regular vehicle maintenance and experienced drivers ensure your safety throughout the journey.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card-modern">
+                        <div class="feature-icon-modern">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Punctual Service</h4>
+                        <p>We value your time with strict adherence to schedules and timely arrivals.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card-modern">
+                        <div class="feature-icon-modern">
+                            <i class="fas fa-couch"></i>
+                        </div>
+                        <h4>Luxury Comfort</h4>
+                        <p>Premium seating, AC facilities, and entertainment systems for a comfortable journey.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card-modern">
+                        <div class="feature-icon-modern">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>24/7 Support</h4>
+                        <p>Round-the-clock customer service to assist you with all your travel needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section class="section-padding services-section" id="services">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -1455,65 +1921,108 @@
             </div>
             <div class="row">
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="0">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-briefcase"></i>
+                    <div class="service-card-modern">
+                        <div class="service-badge">Popular</div>
+                        <div class="service-header">
+                            <i class="fas fa-briefcase service-icon-modern"></i>
+                            <h4>Corporate Transportation</h4>
                         </div>
-                        <h4>Corporate Transportation</h4>
-                        <p>Reliable daily transportation for your workforce with flexible scheduling and premium comfort.</p>
+                        <div class="service-content">
+                            <p>Reliable daily transportation for your workforce with flexible scheduling and premium comfort.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Employee Pickup & Drop</li>
+                                <li><i class="fas fa-check"></i> Corporate Events</li>
+                                <li><i class="fas fa-check"></i> Business Meetings</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-mountain"></i>
+                    <div class="service-card-modern">
+                        <div class="service-header">
+                            <i class="fas fa-mountain service-icon-modern"></i>
+                            <h4>Outstation Tours</h4>
                         </div>
-                        <h4>Outstation Tours</h4>
-                        <p>Comfortable journeys to religious sites and tourist destinations with experienced drivers.</p>
+                        <div class="service-content">
+                            <p>Comfortable journeys to religious sites and tourist destinations with experienced drivers.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Pilgrimage Trips</li>
+                                <li><i class="fas fa-check"></i> Tourist Destinations</li>
+                                <li><i class="fas fa-check"></i> Weekend Getaways</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-school"></i>
+                    <div class="service-card-modern">
+                        <div class="service-header">
+                            <i class="fas fa-school service-icon-modern"></i>
+                            <h4>School & College Trips</h4>
                         </div>
-                        <h4>School & College Trips</h4>
-                        <p>Safe and secure transportation for educational institutions with trained staff.</p>
+                        <div class="service-content">
+                            <p>Safe and secure transportation for educational institutions with trained staff.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Educational Tours</li>
+                                <li><i class="fas fa-check"></i> Sports Events</li>
+                                <li><i class="fas fa-check"></i> Field Trips</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="0">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-ring"></i>
+                    <div class="service-card-modern">
+                        <div class="service-header">
+                            <i class="fas fa-ring service-icon-modern"></i>
+                            <h4>Wedding & Events</h4>
                         </div>
-                        <h4>Wedding & Events</h4>
-                        <p>Elegant transportation solutions for weddings and special events with customized packages.</p>
+                        <div class="service-content">
+                            <p>Elegant transportation solutions for weddings and special events with customized packages.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Wedding Parties</li>
+                                <li><i class="fas fa-check"></i> Family Functions</li>
+                                <li><i class="fas fa-check"></i> Special Events</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-plane"></i>
+                    <div class="service-card-modern">
+                        <div class="service-header">
+                            <i class="fas fa-plane service-icon-modern"></i>
+                            <h4>Airport Transfers</h4>
                         </div>
-                        <h4>Airport Transfers</h4>
-                        <p>Punctual and comfortable airport transfers with flight tracking for timely arrivals.</p>
+                        <div class="service-content">
+                            <p>Punctual and comfortable airport transfers with flight tracking for timely arrivals.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Domestic Airport</li>
+                                <li><i class="fas fa-check"></i> International Airport</li>
+                                <li><i class="fas fa-check"></i> Railway Station</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-route"></i>
+                    <div class="service-card-modern">
+                        <div class="service-header">
+                            <i class="fas fa-route service-icon-modern"></i>
+                            <h4>Custom Tours</h4>
                         </div>
-                        <h4>Custom Tours</h4>
-                        <p>Tailored travel experiences designed to meet your specific requirements and preferences.</p>
+                        <div class="service-content">
+                            <p>Tailored travel experiences designed to meet your specific requirements and preferences.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Personalized Itineraries</li>
+                                <li><i class="fas fa-check"></i> Flexible Scheduling</li>
+                                <li><i class="fas fa-check"></i> Custom Packages</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Fleet Section -->
-    <section class="section-padding bg-section-3 bg-animation" id="fleet">
+   <!-- Our Fleet Section - Updated -->
+    <section class="section-padding fleet-section" id="fleet">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -1525,67 +2034,140 @@
             </div>
             <div class="row">
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="flip-left" data-aos-delay="0">
-                    <div class="fleet-card">
-                        <div class="fleet-badge">AC</div>
-                        <!-- Replace with your bus image -->
+                    <div class="fleet-card-3d">
+                        <div class="fleet-badge-3d">Premium</div>
                         <img src="AC Sleeper Buses.png" alt="AC Sleeper Bus">
-                        <div class="fleet-overlay">
+                        <div class="fleet-overlay-3d">
                             <h4>AC Sleeper Buses</h4>
-                            <p class="mb-0">Pushback seats, charging points, premium comfort</p>
+                            <div class="fleet-specs">
+                                <div class="fleet-spec">
+                                    <i class="fas fa-snowflake"></i>
+                                    <small>AC</small>
+                                </div>
+                                <div class="fleet-spec">
+                                    <i class="fas fa-bed"></i>
+                                    <small>Sleeper</small>
+                                </div>
+                                <div class="fleet-spec">
+                                    <i class="fas fa-users"></i>
+                                    <small>40 Seats</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="flip-left" data-aos-delay="100">
-                    <div class="fleet-card">
-                        <div class="fleet-badge">AC</div>
-                        <!-- Replace with your bus image -->
+                    <div class="fleet-card-3d">
+                        <div class="fleet-badge-3d">Comfort</div>
                         <img src="Semi Sleeper Buses.png" alt="Semi Sleeper Bus">
-                        <div class="fleet-overlay">
+                        <div class="fleet-overlay-3d">
                             <h4>Semi Sleeper Buses</h4>
-                            <p class="mb-0">Comfortable seating, AC, entertainment systems</p>
+                            <div class="fleet-specs">
+                                <div class="fleet-spec">
+                                    <i class="fas fa-snowflake"></i>
+                                    <small>AC</small>
+                                </div>
+                                <div class="fleet-spec">
+                                    <i class="fas fa-chair"></i>
+                                    <small>Semi-Sleeper</small>
+                                </div>
+                                <div class="fleet-spec">
+                                    <i class="fas fa-users"></i>
+                                    <small>45 Seats</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="flip-left" data-aos-delay="200">
-                    <div class="fleet-card">
-                        <!-- Replace with your bus image -->
+                    <div class="fleet-card-3d">
+                        <div class="fleet-badge-3d">Economy</div>
                         <img src="Non AC Sleeper Buses.jpg" alt="Non-AC Bus">
-                        <div class="fleet-overlay">
+                        <div class="fleet-overlay-3d">
                             <h4>Non-AC Buses</h4>
-                            <p class="mb-0">Economical option with comfortable seating</p>
+                            <div class="fleet-specs">
+                                <div class="fleet-spec">
+                                    <i class="fas fa-wind"></i>
+                                    <small>Ventilated</small>
+                                </div>
+                                <div class="fleet-spec">
+                                    <i class="fas fa-chair"></i>
+                                    <small>Seater</small>
+                                </div>
+                                <div class="fleet-spec">
+                                    <i class="fas fa-users"></i>
+                                    <small>50 Seats</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="flip-left" data-aos-delay="0">
-                    <div class="fleet-card">
-                        <div class="fleet-badge">AC</div>
-                        <!-- Replace with your bus image -->
+                    <div class="fleet-card-3d">
+                        <div class="fleet-badge-3d">Compact</div>
                         <img src="Mini Buses ac.jpg" alt="Mini Bus">
-                        <div class="fleet-overlay">
+                        <div class="fleet-overlay-3d">
                             <h4>Mini Buses</h4>
-                            <p class="mb-0">Ideal for small groups, AC, comfortable seating</p>
+                            <div class="fleet-specs">
+                                <div class="fleet-spec">
+                                    <i class="fas fa-snowflake"></i>
+                                    <small>AC</small>
+                                </div>
+                                <div class="fleet-spec">
+                                    <i class="fas fa-car"></i>
+                                    <small>Compact</small>
+                                </div>
+                                <div class="fleet-spec">
+                                    <i class="fas fa-users"></i>
+                                    <small>20 Seats</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="flip-left" data-aos-delay="100">
-                    <div class="fleet-card">
-                        <div class="fleet-badge">AC</div>
-                        <!-- Replace with your bus image -->
+                    <div class="fleet-card-3d">
+                        <div class="fleet-badge-3d">Premium</div>
                         <img src="Tempo Travellers.jpg" alt="Tempo Traveller">
-                        <div class="fleet-overlay">
+                        <div class="fleet-overlay-3d">
                             <h4>Tempo Travellers</h4>
-                            <p class="mb-0">Perfect for small groups, AC, comfortable seating</p>
+                            <div class="fleet-specs">
+                                <div class="fleet-spec">
+                                    <i class="fas fa-snowflake"></i>
+                                    <small>AC</small>
+                                </div>
+                                <div class="fleet-spec">
+                                    <i class="fas fa-van"></i>
+                                    <small>Traveller</small>
+                                </div>
+                                <div class="fleet-spec">
+                                    <i class="fas fa-users"></i>
+                                    <small>12 Seats</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="flip-left" data-aos-delay="200">
-                    <div class="fleet-card">
-                        <div class="fleet-badge">Luxury</div>
-                        <!-- Replace with your bus image -->
+                    <div class="fleet-card-3d">
+                        <div class="fleet-badge-3d">Luxury</div>
                         <img src="Luxury Coaches.webp" alt="Luxury Coach">
-                        <div class="fleet-overlay">
+                        <div class="fleet-overlay-3d">
                             <h4>Luxury Coaches</h4>
-                            <p class="mb-0">Premium amenities, reclining seats, onboard entertainment</p>
+                            <div class="fleet-specs">
+                                <div class="fleet-spec">
+                                    <i class="fas fa-tv"></i>
+                                    <small>Entertainment</small>
+                                </div>
+                                <div class="fleet-spec">
+                                    <i class="fas fa-wifi"></i>
+                                    <small>WiFi</small>
+                                </div>
+                                <div class="fleet-spec">
+                                    <i class="fas fa-users"></i>
+                                    <small>35 Seats</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1594,7 +2176,7 @@
     </section>
 
     <!-- Our Own Bus Garage Section -->
-    <section class="garage-section bg-animation" id="garage">
+    <section class="section-padding garage-section" id="garage">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -1604,329 +2186,49 @@
                     </div>
                 </div>
             </div>
-            <div class="row align-items-center mb-5">
-                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
-                    <div class="garage-main-image">
-                        <!-- Replace with your garage image -->
-                        <img src="banner board.png" alt="Sri Jogulamba Travels Bus Garage" class="img-fluid">
-                    </div>
+            
+            <!-- How Our Garage Benefits You -->
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <h3 class="text-center" data-aos="fade-up">How Our Garage Benefits You</h3>
                 </div>
-                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
-                    <h3 class="mb-4">Complete In-House Maintenance Facility</h3>
-                    <p class="lead">Sri Jogulamba Travels operates its own fully-equipped bus garage, ensuring complete control over vehicle maintenance and quality.</p>
-                    <p>Our state-of-the-art facility handles all types of work in-house, from routine servicing to major repairs, guaranteeing that every vehicle in our fleet meets the highest standards of safety and reliability.</p>
-                    
-                    <div class="mt-4">
-                        <h5 class="mb-3">Key Advantages:</h5>
-                        <div class="garage-feature">
-                            <div class="garage-feature-icon">
+                <div class="col-12">
+                    <div class="benefit-timeline">
+                        <div class="benefit-item" data-aos="fade-right">
+                            <div class="benefit-icon-timeline">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Enhanced Safety</h4>
+                                <p>Every vehicle undergoes strict safety checks and maintenance before each trip, ensuring maximum safety for passengers. Our in-house garage allows us to maintain higher safety standards.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item" data-aos="fade-left">
+                            <div class="benefit-icon-timeline">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Reduced Breakdowns</h4>
+                                <p>Preventive maintenance and regular servicing minimize unexpected issues on the road, ensuring smooth journeys. Our comprehensive checks catch potential problems before they occur.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item" data-aos="fade-right">
+                            <div class="benefit-icon-timeline">
                                 <i class="fas fa-tools"></i>
                             </div>
-                            <div>
-                                <h6 class="mb-0">Complete Mechanical Repairs</h6>
-                                <p class="mb-0">Full engine work and mechanical repairs performed by certified technicians</p>
+                            <div class="benefit-content">
+                                <h4>Faster Turnaround</h4>
+                                <p>In-house repairs mean quicker service and minimal downtime for your booked vehicles. No waiting for external garages to complete repairs.</p>
                             </div>
                         </div>
-                        <div class="garage-feature">
-                            <div class="garage-feature-icon">
-                                <i class="fas fa-car-crash"></i>
+                        <div class="benefit-item" data-aos="fade-left">
+                            <div class="benefit-icon-timeline">
+                                <i class="fas fa-dollar-sign"></i>
                             </div>
-                            <div>
-                                <h6 class="mb-0">Body Repairs & Painting</h6>
-                                <p class="mb-0">Complete bodywork and professional painting services</p>
+                            <div class="benefit-content">
+                                <h4>Cost Efficiency</h4>
+                                <p>Direct control over maintenance costs translates to better value and competitive pricing for our customers. We pass the savings from our efficient garage operations to you.</p>
                             </div>
-                        </div>
-                        <div class="garage-feature">
-                            <div class="garage-feature-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div>
-                                <h6 class="mb-0">Electrical & AC Repairs</h6>
-                                <p class="mb-0">Expert electrical systems and air conditioning maintenance</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row mb-5">
-                <div class="col-12">
-                    <h3 class="text-center mb-5" data-aos="fade-up">Our Comprehensive Garage Services</h3>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="0">
-                    <div class="garage-card">
-                        <div class="garage-image">
-                            <img src="MECH1.png" alt="Mechanical Repairs">
-                        </div>
-                        <div class="garage-content">
-                            <div class="garage-icon">
-                                <i class="fas fa-cogs"></i>
-                            </div>
-                            <h4>Mechanical Repairs</h4>
-                            <p>Complete engine diagnostics, repairs, and overhaul services by certified mechanics.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="garage-card">
-                        <div class="garage-image">
-                            <img src="Body Repairs.png" alt="Body Repairs & Painting">
-                        </div>
-                        <div class="garage-content">
-                            <div class="garage-icon">
-                                <i class="fas fa-paint-roller"></i>
-                            </div>
-                            <h4>Body Repairs & Painting</h4>
-                            <p>Professional dent removal, panel beating, and high-quality painting services.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="garage-card">
-                        <div class="garage-image">
-                            <img src="Electrical.png" alt="Electrical Systems">
-                        </div>
-                        <div class="garage-content">
-                            <div class="garage-icon">
-                                <i class="fas fa-plug"></i>
-                            </div>
-                            <h4>Electrical Systems</h4>
-                            <p>Complete electrical diagnostics, wiring repairs, and component replacements.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="0">
-                    <div class="garage-card">
-                        <div class="garage-image">
-                            <img src="AC Repairs.png" alt="AC Repairs">
-                        </div>
-                        <div class="garage-content">
-                            <div class="garage-icon">
-                                <i class="fas fa-snowflake"></i>
-                            </div>
-                            <h4>AC Repairs</h4>
-                            <p>Air conditioning system maintenance, gas charging, and component repairs.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="garage-card">
-                        <div class="garage-image">
-                            <img src="Wheel Alignment.png" alt="Wheel Alignment">
-                        </div>
-                        <div class="garage-content">
-                            <div class="garage-icon">
-                                <i class="fas fa-tachometer-alt"></i>
-                            </div>
-                            <h4>Wheel Alignment</h4>
-                            <p>Precision wheel alignment, balancing, and suspension system maintenance.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="garage-card">
-                        <div class="garage-image">
-                            <img src="Tyre Services.png" alt="Tyre Services">
-                        </div>
-                        <div class="garage-content">
-                            <div class="garage-icon">
-                                <i class="fas fa-tire"></i>
-                            </div>
-                            <h4>Tyre Services</h4>
-                            <p>Tyre change, rotation, balancing, and pressure monitoring for optimal safety.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="text-center mb-5" data-aos="fade-up">How Our Garage Benefits You</h3>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h5>Enhanced Safety</h5>
-                        <p>Every vehicle undergoes strict safety checks before each trip</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h5>Reduced Breakdowns</h5>
-                        <p>Preventive maintenance minimizes unexpected issues on the road</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <h5>Faster Turnaround</h5>
-                        <p>In-house repairs mean quicker service and minimal downtime</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <h5>Cost Efficiency</h5>
-                        <p>Direct control over maintenance costs translates to better value</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row mt-5">
-                <div class="col-12 text-center" data-aos="fade-up">
-                    <div class="modern-card">
-                        <h4 class="gradient-text">Our Maintenance Philosophy</h4>
-                        <p class="lead">At Sri Jogulamba Travels, we believe that proper maintenance is the foundation of reliable transportation. Our in-house garage allows us to maintain the highest standards of vehicle care, ensuring that every journey is safe, comfortable, and punctual.</p>
-                        <p>Regular servicing, preventive maintenance, and thorough safety inspections are conducted for every vehicle before each trip. This commitment to excellence results in fewer breakdowns, extended vehicle lifespan, and most importantly - safe, smooth journeys for our valued customers.</p>
-                        <a href="#contact" class="btn btn-primary mt-3">Experience Our Premium Service</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Routes & Packages Section -->
-    <section class="section-padding bg-section-4 bg-animation" id="routes">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title" data-aos="fade-up">
-                        <h2>Routes & Packages</h2>
-                        <p>Popular Destinations with Comfortable Travel</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-10 mx-auto" data-aos="fade-up" data-aos-delay="200">
-                    <div class="modern-card">
-                        <div class="card-body">
-                            <h4 class="mb-4 text-center gradient-text">Popular Routes</h4>
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Route</th>
-                                            <th>Distance</th>
-                                            <th>Approx. Travel Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Hyderabad – Tirupati</td>
-                                            <td>560 km</td>
-                                            <td>10-12 hours</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hyderabad – Vijayawada</td>
-                                            <td>270 km</td>
-                                            <td>5-6 hours</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hyderabad – Bengaluru</td>
-                                            <td>570 km</td>
-                                            <td>10-11 hours</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hyderabad – Chennai</td>
-                                            <td>630 km</td>
-                                            <td>11-12 hours</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hyderabad – Visakhapatnam</td>
-                                            <td>620 km</td>
-                                            <td>11-12 hours</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hyderabad – Mumbai</td>
-                                            <td>710 km</td>
-                                            <td>13-14 hours</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="mt-4 text-center">
-                                <p class="lead">Custom packages available on request by phone or email</p>
-                                <a href="#contact" class="btn btn-primary">Contact Us for Custom Routes</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="section-padding bg-section-1 bg-animation" id="gallery">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title" data-aos="fade-up">
-                        <h2>Gallery</h2>
-                        <p>Glimpse of Our Services and Fleet</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="0">
-                    <div class="gallery-item">
-                        <!-- Replace with your gallery image -->
-                        <img src="Luxury Bus Exterior.png" alt="Luxury Bus Exterior">
-                        <div class="gallery-overlay">
-                            <h5 class="text-white">Luxury Bus Exterior</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="gallery-item">
-                        <!-- Replace with your gallery image -->
-                        <img src="Comfortable Interiors.png" alt="Comfortable Interiors">
-                        <div class="gallery-overlay">
-                            <h5 class="text-white">Comfortable Interiors</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="gallery-item">
-                        <!-- Replace with your gallery image -->
-                        <img src="Scenic Routes.png" alt="Scenic Routes">
-                        <div class="gallery-overlay">
-                            <h5 class="text-white">Scenic Routes</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="0">
-                    <div class="gallery-item">
-                        <!-- Replace with your gallery image -->
-                        <img src="Happy Customers.png" alt="Happy Customers">
-                        <div class="gallery-overlay">
-                            <h5 class="text-white">Happy Customers</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="gallery-item">
-                        <!-- Replace with your gallery image -->
-                        <img src="Pilgrimage Trips.png" alt="Pilgrimage Trips">
-                        <div class="gallery-overlay">
-                            <h5 class="text-white">Pilgrimage Trips</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="gallery-item">
-                        <!-- Replace with your gallery image -->
-                        <img src="Journey Experience.png" alt="Journey Experience">
-                        <div class="gallery-overlay">
-                            <h5 class="text-white">Journey Experience</h5>
                         </div>
                     </div>
                 </div>
@@ -1935,7 +2237,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="section-padding bg-section-2 bg-animation" id="testimonials">
+    <section class="section-padding testimonials-section" id="testimonials">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -1947,65 +2249,74 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="0">
-                    <div class="testimonial-card">
-                        <div class="stars">
+                    <div class="testimonial-carousel-card">
+                        <div class="testimonial-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p class="mb-4">"Excellent service! The bus was clean, comfortable, and the driver was very professional. We reached our destination on time. Highly recommended for family trips."</p>
-                        <div class="d-flex align-items-center">
-                            <div class="client-img" style="background: #ddd; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-user fa-lg"></i>
+                        <p class="testimonial-text">"Excellent service! The bus was clean, comfortable, and the driver was very professional. We reached our destination on time. Highly recommended for family trips."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
                             </div>
-                            <div>
-                                <h5 class="mb-0">Ravi Kumar</h5>
-                                <small class="text-muted">Corporate Trip</small>
+                            <div class="author-info">
+                                <h5>Ravi Kumar</h5>
+                                <p>Corporate Trip Client</p>
                             </div>
+                        </div>
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-right"></i>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="testimonial-card">
-                        <div class="stars">
+                    <div class="testimonial-carousel-card">
+                        <div class="testimonial-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p class="mb-4">"We booked a bus for our school trip. The management was very cooperative and the drivers were experienced. The children had a safe and comfortable journey."</p>
-                        <div class="d-flex align-items-center">
-                            <div class="client-img" style="background: #ddd; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-user fa-lg"></i>
+                        <p class="testimonial-text">"We booked a bus for our school trip. The management was very cooperative and the drivers were experienced. The children had a safe and comfortable journey."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
                             </div>
-                            <div>
-                                <h5 class="mb-0">Priya Sharma</h5>
-                                <small class="text-muted">School Trip</small>
+                            <div class="author-info">
+                                <h5>Priya Sharma</h5>
+                                <p>School Trip Organizer</p>
                             </div>
+                        </div>
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-right"></i>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="testimonial-card">
-                        <div class="stars">
+                    <div class="testimonial-carousel-card">
+                        <div class="testimonial-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                         </div>
-                        <p class="mb-4">"Regular customer for our employee transportation. Reliable service, well-maintained buses, and professional drivers. Great value for money."</p>
-                        <div class="d-flex align-items-center">
-                            <div class="client-img" style="background: #ddd; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-user fa-lg"></i>
+                        <p class="testimonial-text">"Regular customer for our employee transportation. Reliable service, well-maintained buses, and professional drivers. Great value for money."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
                             </div>
-                            <div>
-                                <h5 class="mb-0">Anil Reddy</h5>
-                                <small class="text-muted">Corporate Client</small>
+                            <div class="author-info">
+                                <h5>Anil Reddy</h5>
+                                <p>Corporate Client</p>
                             </div>
+                        </div>
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-right"></i>
                         </div>
                     </div>
                 </div>
@@ -2013,112 +2324,106 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact-section bg-animation" id="contact">
+    <!-- Contact Section with Backend - Updated -->
+    <section class="contact-section" id="contact">
         <div class="container">
             <div class="contact-header" data-aos="fade-up">
-                <h1>CONTACT US</h1>
+                <h2>Contact Us</h2>
                 <p>Get in touch for royal transportation services</p>
             </div>
             
             <div class="row">
-                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
-                    <div class="contact-info-card">
-                        <h3>GET IN TOUCH</h3>
+                <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="800">
+                    <div class="contact-info">
+                        <h4>Get In Touch</h4>
                         
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h5>ADDRESS</h5>
-                                <p>Survey no .85,Injapur torur road, R.R. Dist, Hyderabad TG-501510
-                                     
-                                </p>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h5>Address</h5>
+                                <p>Survey no .85, Injapur, Rangareddy-501510, Hyderabad, Telangana</p>
                             </div>
                         </div>
                         
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h5>PHONE</h5>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <h5>Phone</h5>
                                 <p>
-                                    <a href="tel:+91 9010520942">+91 9010520942</a><br>
-                                    <a href="tel:+91 7032807716">+91 7032807716</a>
+                                    <a href="tel:+919010520942">+91 9010520942</a><br>
+                                    <a href="tel:+917032807716">+91 7032807716</a>
                                 </p>
                             </div>
                         </div>
                         
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h5>EMAIL</h5>
-                                <p><a href="mailto:jogulambatravel@gmail.com">jogulambatravel@gmail.com</a></p>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h5>Email</h5>
+                                <p><a href="mailto:srijogulambtravel@gmail.com">srijogulambtravel@gmail.com</a></p>
                             </div>
                         </div>
                         
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h5>WEBSITE</h5>
-                                <p><a href="http://www.jogulambatravels.com">www.jogulambatravels.com</a></p>
+                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <div>
+                                <h5>Website</h5>
+                                <p><a href="http://www.srijogulambtravels.com" target="_blank">www.srijogulambtravels.com</a></p>
                             </div>
                         </div>
                         
-                        <a href="https://wa.me/919010520942" class="submit-btn" style="display: inline-flex; align-items: center; justify-content: center; width: auto; margin-top: 20px;">
-                            <i class="fab fa-whatsapp me-2"></i> Chat on WhatsApp
-                        </a>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
-                    <div class="contact-form-card">
-                        <h3>SEND US A MESSAGE</h3>
-                        
+                <div class="col-lg-7" data-aos="fade-left" data-aos-duration="800">
+                    <div class="contact-form">
+                        <h4 class="mb-4">Send Us a Message</h4>
                         <form id="contactForm">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
-                                    </div>
+                                    <input type="text" class="form-control" id="name" placeholder="Your Name" required />
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject" required>
-                                    </div>
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email" required />
                                 </div>
                             </div>
-                            
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="email" placeholder="Your Email" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <textarea class="form-control" id="message" placeholder="Your Message" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="submit-btn">SEND MESSAGE</button>
+                            <input type="text" class="form-control" id="subject" placeholder="Subject" required />
+                            <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+                            <button type="submit" class="btn btn-royal">Send Message</button>
                         </form>
                     </div>
                 </div>
             </div>
             
-            <div class="row">
-                <div class="col-12">
-                    <div class="map-container" data-aos="fade-up" data-aos-delay="300">
-                        <!-- Placeholder for Google Maps -->
-                        <div style="background: linear-gradient(135deg, #1a6fc4, #0d4a8a); height: 400px; display: flex; align-items: center; justify-content: center; color: white;">
-                            <div class="text-center">
-                                <i class="fas fa-map-marked-alt fa-3x mb-3"></i>
-                                <h4>Google Maps Location</h4>
-                                <p>Survey no .85,Injapur torur road, R.R. Dist, Hyderabad TG-501510</p>
-                            </div>
+            <!-- Map Section -->
+            <div class="map-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="map-wrapper">
+                    <div class="map-header">
+                        <i class="fas fa-map-marked-alt fa-2x"></i>
+                        <h4>Find Us on Google Maps</h4>
+                        <p>Survey no .85, Injapur, Rangareddy-501510, Hyderabad, Telangana</p>
+                    </div>
+                    <iframe 
+                        class="map-frame"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60950.82550332878!2d78.5954837!3d17.2949546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcba1da8f81fa13%3A0xa1a952301fbffade!2sRK%20BUS%20COACH!5e0!3m2!1sen!2sin!4v1764565097044!5m2!1sen!2sin" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    <div class="location-info">
+                        
+                        <div class="controls">
+                            <a href="https://www.google.com/maps/search/?api=1&query=RK+BUS+COACH+Hyderabad" 
+                               target="_blank" class="btn" id="open-google-maps">
+                                <i class="fas fa-external-link-alt"></i> Open in Google Maps
+                            </a>
+                          
                         </div>
                     </div>
                 </div>
@@ -2126,17 +2431,27 @@
         </div>
     </section>
 
+    <!-- Toast Notification -->
+    <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">
+        <div class="d-flex">
+            <div class="toast-body">
+                Thank you for your message! We'll get back to you soon.
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer>
+     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <div class="footer-logo"><a class="navbar-brand" href="#">
-                <!-- Replace with your logo image -->
-                <img src="sj Travels logo png1.png" alt="Sri Jogulamba Travels Logo" class="logo-img">
-                <span class="full-name">Sri Jogulamb<br> Travels</span>
-                
-            </a></div>
+                    <div class="footer-logo">
+                        <a class="navbar-brand" href="#">
+                            <img src="sj Travels logo png1.png" alt="Sri Jogulamba Travels Logo" class="logo-img">
+                            <span class="full-name">Sri Jogulamb<br> Travels</span>
+                        </a>
+                    </div>
                     <p class="mb-4">15+ Years of Service<br>All Kinds of Luxury Buses & Sleeper Bus Available</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -2157,7 +2472,6 @@
                 <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
                     <h5 class="mb-3">More</h5>
                     <div class="footer-links">
-                        <a href="#routes">Routes</a>
                         <a href="#gallery">Gallery</a>
                         <a href="#testimonials">Testimonials</a>
                         <a href="#contact">Contact</a>
@@ -2166,19 +2480,16 @@
                 <div class="col-lg-4">
                     <h5 class="mb-3">Contact Info</h5>
                     <div class="footer-links">
-                        <p><i class="fas fa-map-marker-alt me-2"></i> Survey no .85,Injapur torur road, R.R. Dist, Hyderabad TG-501510</p>
+                        <p><i class="fas fa-map-marker-alt me-2"></i> Survey no .85,Injapur, Rangareddy-501510,Hyderabad, Telangana</p>
                         <p><i class="fas fa-phone me-2"></i> +91 9010520942 / +91 7032807716</p>
-                        <p><i class="fas fa-envelope me-2"></i> jogulambatravel@gmail.com</p>
+                        <p><i class="fas fa-envelope me-2"></i> srijogulambatravel@gmail.com</p>
                     </div>
                 </div>
             </div>
             <hr class="my-5" style="border-color: rgba(255,255,255,0.1);">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-6 text-center">
                     <p class="mb-0">&copy; <span id="currentYear"></span> Sri Jogulamba Travels. All Rights Reserved.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0">Designed with <i class="fas fa-heart text-danger"></i> for our valued customers</p>
                 </div>
             </div>
         </div>
@@ -2224,6 +2535,12 @@
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
+                    
+                    // Close mobile navbar if open
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if(navbarCollapse.classList.contains('show')) {
+                        bootstrap.Collapse.getInstance(navbarCollapse).hide();
+                    }
                 }
             });
         });
@@ -2248,41 +2565,83 @@
                 }
             });
         });
-        
-        // Contact form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        // Contact form submission with Google Apps Script
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
             e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const subject = document.getElementById('subject').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Here you would typically send the form data to your server
-            // For demonstration, we'll just show an alert
-            alert(`Thank you ${name}! Your message has been sent successfully. We will get back to you soon.`);
-            
-            // Reset the form
-            document.getElementById('contactForm').reset();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const subject = document.getElementById("subject").value;
+            const message = document.getElementById("message").value;
+
+            // Replace with your Google Apps Script URL
+            // To set this up:
+            // 1. Create a Google Sheet
+            // 2. Go to Extensions > Apps Script
+            // 3. Paste the script from below
+            // 4. Deploy as Web App
+            // 5. Copy the deployment URL and paste it below
+            const url = "https://script.google.com/macros/s/YOUR_APPS_SCRIPT_URL/exec";
+
+            fetch(url, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&subject=${encodeURIComponent(subject)}&message=${encodeURIComponent(message)}&timestamp=${encodeURIComponent(new Date().toLocaleString())}`,
+            })
+            .then(() => {
+                // Show success toast
+                var toast = new bootstrap.Toast(document.getElementById("successToast"));
+                toast.show();
+                document.getElementById("contactForm").reset();
+            })
+            .catch((err) => {
+                alert("Thank you for your message! We'll get back to you soon.");
+                console.log("Form submission attempted");
+                document.getElementById("contactForm").reset();
+            });
         });
 
-        // Add scroll-triggered animations
+        // Add random dots for background animation
+        function createRandomDots() {
+            const pulseDots = document.querySelector('.pulse-dots');
+            const dotCount = 15;
+            
+            for(let i = 0; i < dotCount; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                
+                // Random position
+                const top = Math.random() * 100;
+                const left = Math.random() * 100;
+                const size = 5 + Math.random() * 10;
+                const delay = Math.random() * 3;
+                
+                dot.style.top = `${top}%`;
+                dot.style.left = `${left}%`;
+                dot.style.width = `${size}px`;
+                dot.style.height = `${size}px`;
+                dot.style.animationDelay = `${delay}s`;
+                
+                // Random color
+                const colors = ['#1a6fc4', '#e63946', '#0d4a8a', '#c1121f'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                dot.style.background = color;
+                
+                pulseDots.appendChild(dot);
+            }
+        }
+        
+        // Initialize on load
         document.addEventListener('DOMContentLoaded', function() {
-            // Add animation classes to elements on scroll
-            const animatedElements = document.querySelectorAll('.feature-card, .service-card, .fleet-card, .gallery-item, .testimonial-card');
+            createRandomDots();
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in-up');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            animatedElements.forEach(el => {
-                observer.observe(el);
+            // Initialize Bootstrap toast
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+            var toastList = toastElList.map(function (toastEl) {
+                return new bootstrap.Toast(toastEl)
             });
         });
     </script>
