@@ -911,7 +911,7 @@
             display: block;
         }
         
-        /* Our Own Bus Garage Section */
+        /* NEW: Our Own Bus Garage Section */
         .garage-section {
             background: linear-gradient(135deg, #ffffff, #f8f9fa);
             position: relative;
@@ -953,6 +953,78 @@
         
         .garage-main-image:hover img {
             transform: scale(1.1);
+        }
+        
+        .garage-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .garage-feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+        
+        .garage-feature:hover .garage-feature-icon {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .garage-service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+            height: 100%;
+        }
+        
+        .garage-service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .garage-service-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .garage-service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .garage-service-card:hover .garage-service-image img {
+            transform: scale(1.1);
+        }
+        
+        .garage-service-content {
+            padding: 25px;
+        }
+        
+        .garage-service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
         
         /* How Our Garage Benefits You - MOBILE FIXED */
@@ -2187,7 +2259,141 @@
                     </div>
                 </div>
             </div>
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <div class="garage-main-image">
+                        <!-- Replace with your garage image -->
+                        <img src="banner board.jpg" alt="Sri Jogulamba Travels Bus Garage" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                    <h3 class="mb-4">Complete In-House Maintenance Facility</h3>
+                    <p class="lead">Sri Jogulamba Travels operates its own fully-equipped bus garage, ensuring complete control over vehicle maintenance and quality.</p>
+                    <p>Our state-of-the-art facility handles all types of work in-house, from routine servicing to major repairs, guaranteeing that every vehicle in our fleet meets the highest standards of safety and reliability.</p>
+                    
+                    <div class="mt-4">
+                        <h5 class="mb-3">Key Advantages:</h5>
+                        <div class="garage-feature">
+                            <div class="garage-feature-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Complete Mechanical Repairs</h6>
+                                <p class="mb-0">Full engine work and mechanical repairs performed by certified technicians</p>
+                            </div>
+                        </div>
+                        <div class="garage-feature">
+                            <div class="garage-feature-icon">
+                                <i class="fas fa-car-crash"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Body Repairs & Painting</h6>
+                                <p class="mb-0">Complete bodywork and professional painting services</p>
+                            </div>
+                        </div>
+                        <div class="garage-feature">
+                            <div class="garage-feature-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Electrical & AC Repairs</h6>
+                                <p class="mb-0">Expert electrical systems and air conditioning maintenance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
+            <!-- Comprehensive Services -->
+            <div class="row mb-5">
+                <div class="col-12 mb-4">
+                    <h3 class="text-center" data-aos="fade-up">Our Comprehensive Garage Services</h3>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="garage-service-card">
+                        <div class="garage-service-image">
+                            <img src="MECH1.png" alt="Mechanical Repairs">
+                        </div>
+                        <div class="garage-service-content">
+                            <div class="garage-service-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h4>Mechanical Repairs</h4>
+                            <p>Complete engine diagnostics, repairs, and overhaul services by certified mechanics. We handle everything from minor tune-ups to major engine rebuilds.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="garage-service-card">
+                        <div class="garage-service-image">
+                            <img src="Body Repairs.png" alt="Body Repairs & Painting">
+                        </div>
+                        <div class="garage-service-content">
+                            <div class="garage-service-icon">
+                                <i class="fas fa-paint-roller"></i>
+                            </div>
+                            <h4>Body Repairs & Painting</h4>
+                            <p>Professional dent removal, panel beating, and high-quality painting services. We restore vehicles to their original condition after accidents or wear.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="garage-service-card">
+                        <div class="garage-service-image">
+                            <img src="Electrical.png" alt="Electrical Systems">
+                        </div>
+                        <div class="garage-service-content">
+                            <div class="garage-service-icon">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                            <h4>Electrical Systems</h4>
+                            <p>Complete electrical diagnostics, wiring repairs, and component replacements. We handle all electrical systems including lighting, signals, and entertainment systems.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="garage-service-card">
+                        <div class="garage-service-image">
+                            <img src="AC Repairs.png" alt="AC Repairs">
+                        </div>
+                        <div class="garage-service-content">
+                            <div class="garage-service-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                            <h4>AC Repairs</h4>
+                            <p>Air conditioning system maintenance, gas charging, and component repairs. We ensure your comfort with fully functional AC systems in all seasons.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="garage-service-card">
+                        <div class="garage-service-image">
+                            <img src="Wheel Alignment.png" alt="Wheel Alignment">
+                        </div>
+                        <div class="garage-service-content">
+                            <div class="garage-service-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h4>Wheel Alignment</h4>
+                            <p>Precision wheel alignment, balancing, and suspension system maintenance. We ensure smooth rides and even tire wear for optimal safety and comfort.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="garage-service-card">
+                        <div class="garage-service-image">
+                            <img src="Tyre Services.png" alt="Tyre Services">
+                        </div>
+                        <div class="garage-service-content">
+                            <div class="garage-service-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h4>Tyre Services</h4>
+                            <p>Tyre change, rotation, balancing, and pressure monitoring for optimal safety. We use premium quality tires that are suitable for long-distance travel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- How Our Garage Benefits You -->
             <div class="row">
                 <div class="col-12 mb-4">
@@ -2455,10 +2661,10 @@
                     </div>
                     <p class="mb-4">15+ Years of Service<br>All Kinds of Luxury Buses & Sleeper Bus Available</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
@@ -2484,6 +2690,7 @@
                         <p><i class="fas fa-map-marker-alt me-2"></i> Survey no .85,Injapur, Rangareddy-501510,Hyderabad, Telangana</p>
                         <p><i class="fas fa-phone me-2"></i> +91 9010520942 / +91 7032807716</p>
                         <p><i class="fas fa-envelope me-2"></i> srijogulambatravel@gmail.com</p>
+                        <p><i class="fas fa-globe me-2"></i> www.srijogulambtravels.com</p>
                     </div>
                 </div>
             </div>
