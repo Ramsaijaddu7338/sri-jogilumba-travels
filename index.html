@@ -1209,6 +1209,118 @@
             font-size: 5rem;
         }
         
+/* Gallery */
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            height: 250px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+ /* New Card Styles */
+        .modern-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modern-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-accent);
+        }
+        
+        .modern-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+/* Testimonials */
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            margin-bottom: 30px;
+            transition: all 0.4s;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .testimonial-card::before {
+            content: '\201C';
+            font-size: 6rem;
+            color: var(--primary);
+            opacity: 0.1;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+            font-family: serif;
+        }
+        
+        .stars {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+        
+        .client-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
         /* NEW: Contact Section with Backend */
         .contact-section {
             background: linear-gradient(135deg, #002e3c, #1a6fc4);
@@ -1811,6 +1923,98 @@
                 height: 30px;
             }
         }
+
+
+        @media (max-width: 480px) {
+  .contact-section {
+    overflow-x: hidden;
+  }
+  
+  .contact-info {
+    padding: 15px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .contact-item {
+    padding: 10px 0;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .contact-item i {
+    min-width: 24px;
+    margin-top: 2px;
+  }
+  
+  .contact-item div {
+    flex: 1;
+    min-width: 0; /* This is crucial for text overflow */
+  }
+  
+  .contact-item p,
+  .contact-item a {
+    font-size: 14px;
+    line-height: 1.4;
+    word-break: break-all; /* For email addresses */
+    overflow-wrap: anywhere; /* Modern property for better breaking */
+  }
+  
+  /* Specific fix for email and website links */
+  .contact-item:nth-child(3) a,
+  .contact-item:nth-child(4) a {
+    display: inline-block;
+    max-width: 100%;
+    word-break: break-all;
+    font-size: 13px;
+  }
+  
+  /* Fix for the website link specifically */
+  .contact-item:nth-child(4) a {
+    word-break: break-word;
+  }
+  
+  /* Map container fixes */
+  .map-container {
+    padding: 0 10px;
+  }
+  
+  .map-frame {
+    height: 250px;
+  }
+  
+  .location-info {
+    padding: 10px;
+  }
+}
+
+/* Extra small devices (320px and below) */
+@media (max-width: 320px) {
+  .contact-item p,
+  .contact-item a {
+    font-size: 13px;
+  }
+  
+  .contact-item:nth-child(3) a,
+  .contact-item:nth-child(4) a {
+    font-size: 12px;
+  }
+  
+  .contact-info {
+    padding: 12px;
+  }
+  
+  .contact-item i {
+    font-size: 14px;
+    min-width: 20px;
+  }
+  
+  /* If still overflowing, use smaller font for problematic elements */
+  .contact-email, 
+  .contact-website {
+    font-size: 11px !important;
+  }
+}
     </style>
 </head>
 <body>
@@ -2437,14 +2641,97 @@
                                 <p>Direct control over maintenance costs translates to better value and competitive pricing for our customers. We pass the savings from our efficient garage operations to you.</p>
                             </div>
                         </div>
+
+                        
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                <div class="col-12 text-center" data-aos="fade-up">
+                    <div class="modern-card">
+                        <h4 class="gradient-text">Our Maintenance Philosophy</h4>
+                        <p class="lead">At Sri Jogulamba Travels, we believe that proper maintenance is the foundation of reliable transportation. Our in-house garage allows us to maintain the highest standards of vehicle care, ensuring that every journey is safe, comfortable, and punctual.</p>
+                        <p>Regular servicing, preventive maintenance, and thorough safety inspections are conducted for every vehicle before each trip. This commitment to excellence results in fewer breakdowns, extended vehicle lifespan, and most importantly - safe, smooth journeys for our valued customers.</p>
+                        <a href="#contact" class="btn btn-primary mt-3">Experience Our Premium Service</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+    
+<!-- Gallery Section -->
+    <section class="section-padding bg-section-1 bg-animation" id="gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title" data-aos="fade-up">
+                        <h2>Gallery</h2>
+                        <p>Glimpse of Our Services and Fleet</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="gallery-item">
+                        <!-- Replace with your gallery image -->
+                        <img src="Luxury Bus Exterior.png" alt="Luxury Bus Exterior">
+                        <div class="gallery-overlay">
+                            <h5 class="text-white">Luxury Bus Exterior</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <!-- Replace with your gallery image -->
+                        <img src="Comfortable Interiors.png" alt="Comfortable Interiors">
+                        <div class="gallery-overlay">
+                            <h5 class="text-white">Comfortable Interiors</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <!-- Replace with your gallery image -->
+                        <img src="Scenic Routes.png" alt="Scenic Routes">
+                        <div class="gallery-overlay">
+                            <h5 class="text-white">Scenic Routes</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="gallery-item">
+                        <!-- Replace with your gallery image -->
+                        <img src="Happy Customers.png" alt="Happy Customers">
+                        <div class="gallery-overlay">
+                            <h5 class="text-white">Happy Customers</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <!-- Replace with your gallery image -->
+                        <img src="Pilgrimage Trips.png" alt="Pilgrimage Trips">
+                        <div class="gallery-overlay">
+                            <h5 class="text-white">Pilgrimage Trips</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <!-- Replace with your gallery image -->
+                        <img src="Journey Experience.png" alt="Journey Experience">
+                        <div class="gallery-overlay">
+                            <h5 class="text-white">Journey Experience</h5>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <!-- Testimonials Section -->
-    <section class="section-padding testimonials-section" id="testimonials">
+    <section class="section-padding bg-section-2 bg-animation" id="testimonials">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -2456,74 +2743,65 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="0">
-                    <div class="testimonial-carousel-card">
-                        <div class="testimonial-rating">
+                    <div class="testimonial-card">
+                        <div class="stars">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p class="testimonial-text">"Excellent service! The bus was clean, comfortable, and the driver was very professional. We reached our destination on time. Highly recommended for family trips."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <i class="fas fa-user"></i>
+                        <p class="mb-4">"Excellent service! The bus was clean, comfortable, and the driver was very professional. We reached our destination on time. Highly recommended for family trips."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="client-img" style="background: #ddd; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-user fa-lg"></i>
                             </div>
-                            <div class="author-info">
-                                <h5>Ravi Kumar</h5>
-                                <p>Corporate Trip Client</p>
+                            <div>
+                                <h5 class="mb-0">Ravi Kumar</h5>
+                                <small class="text-muted">Corporate Trip</small>
                             </div>
-                        </div>
-                        <div class="testimonial-quote">
-                            <i class="fas fa-quote-right"></i>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="testimonial-carousel-card">
-                        <div class="testimonial-rating">
+                    <div class="testimonial-card">
+                        <div class="stars">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p class="testimonial-text">"We booked a bus for our school trip. The management was very cooperative and the drivers were experienced. The children had a safe and comfortable journey."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <i class="fas fa-user"></i>
+                        <p class="mb-4">"We booked a bus for our school trip. The management was very cooperative and the drivers were experienced. The children had a safe and comfortable journey."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="client-img" style="background: #ddd; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-user fa-lg"></i>
                             </div>
-                            <div class="author-info">
-                                <h5>Priya Sharma</h5>
-                                <p>School Trip Organizer</p>
+                            <div>
+                                <h5 class="mb-0">Priya Sharma</h5>
+                                <small class="text-muted">School Trip</small>
                             </div>
-                        </div>
-                        <div class="testimonial-quote">
-                            <i class="fas fa-quote-right"></i>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="testimonial-carousel-card">
-                        <div class="testimonial-rating">
+                    <div class="testimonial-card">
+                        <div class="stars">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                         </div>
-                        <p class="testimonial-text">"Regular customer for our employee transportation. Reliable service, well-maintained buses, and professional drivers. Great value for money."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">
-                                <i class="fas fa-user"></i>
+                        <p class="mb-4">"Regular customer for our employee transportation. Reliable service, well-maintained buses, and professional drivers. Great value for money and a safe and comfortable journey."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="client-img" style="background: #ddd; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-user fa-lg"></i>
                             </div>
-                            <div class="author-info">
-                                <h5>Anil Reddy</h5>
-                                <p>Corporate Client</p>
+                            <div>
+                                <h5 class="mb-0">Anil Reddy</h5>
+                                <small class="text-muted">Corporate Client</small>
                             </div>
-                        </div>
-                        <div class="testimonial-quote">
-                            <i class="fas fa-quote-right"></i>
                         </div>
                     </div>
                 </div>
@@ -2564,20 +2842,20 @@
                         </div>
                         
                         <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h5>Email</h5>
-                                <p><a href="mailto:srijogulambtravel@gmail.com">srijogulambtravel@gmail.com</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-                            <div>
-                                <h5>Website</h5>
-                                <p><a href="http://www.srijogulambtravels.com" target="_blank">www.srijogulambtravels.com</a></p>
-                            </div>
-                        </div>
+  <i class="fas fa-envelope"></i>
+  <div>
+    <h5>Email</h5>
+    <p><a href="mailto:srijogulambtravel@gmail.com" class="contact-email">srijogulambtravel@gmail.com</a></p>
+  </div>
+</div>
+
+<div class="contact-item">
+  <i class="fas fa-globe"></i>
+  <div>
+    <h5>Website</h5>
+    <p><a href="http://www.srijogulambtravels.com" target="_blank" class="contact-website">www.srijogulambtravels.com</a></p>
+  </div>
+</div>
                         
                         <div class="social-icons">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -2607,6 +2885,7 @@
                     </div>
                 </div>
             </div>
+            
             
             <!-- Map Section -->
             <div class="map-container" data-aos="fade-up" data-aos-delay="200">
@@ -2789,7 +3068,7 @@
             // 3. Paste the script from below
             // 4. Deploy as Web App
             // 5. Copy the deployment URL and paste it below
-            const url = "https://script.google.com/macros/s/YOUR_APPS_SCRIPT_URL/exec";
+            const url = "https://script.google.com/macros/s/AKfycbyYnTTMvz0dKFq3_-27PdeMz1fqT5kuOeW1D7IR1iktwYUUV715cVj222hdRuVOUYouuQ/exec";
 
             fetch(url, {
                 method: "POST",
