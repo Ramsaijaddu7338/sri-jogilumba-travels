@@ -2937,23 +2937,30 @@
                 </div>
                 
                 <div class="col-lg-7" data-aos="fade-left" data-aos-duration="800">
-                    <div class="contact-form">
-                        <h4 class="mb-4">Send Us a Message</h4>
-                        <form id="contactForm">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name" required />
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email" required />
-                                </div>
-                            </div>
-                            <input type="text" class="form-control" id="subject" placeholder="Subject" required />
-                            <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
-                            <button type="submit" class="btn btn-royal">Send Message</button>
-                        </form>
-                    </div>
+    <div class="contact-form">
+        <h4 class="mb-4">Send Us a Message</h4>
+        <form id="contactForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="name" placeholder="Your Name" required />
                 </div>
+                <div class="col-md-6">
+                    <input type="email" class="form-control" id="email" placeholder="Your Email" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="tel" class="form-control" id="phone" placeholder="Your Phone Number" required />
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="subject" placeholder="Subject" required />
+                </div>
+            </div>
+            <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn btn-royal">Send Message</button>
+        </form>
+    </div>
+</div>
             </div>
             
             
@@ -3123,43 +3130,39 @@
             });
         });
         // Contact form submission with Google Apps Script
-        document.getElementById("contactForm").addEventListener("submit", function (e) {
-            e.preventDefault();
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const subject = document.getElementById("subject").value;
-            const message = document.getElementById("message").value;
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
 
-            // Replace with your Google Apps Script URL
-            // To set this up:
-            // 1. Create a Google Sheet
-            // 2. Go to Extensions > Apps Script
-            // 3. Paste the script from below
-            // 4. Deploy as Web App
-            // 5. Copy the deployment URL and paste it below
-            const url = "https://script.google.com/macros/s/AKfycbwgyA9MDiLjhOtr17vUg2C8NbxtmZ6igxFflTDdb4npGugllnzbV3lAbgBSqs4L_VN0/exec";
+    // Replace with your Google Apps Script URL
+    const url = "https://script.google.com/macros/s/AKfycbzJnoF-hlFspgYrf7uD2SIgti6V69qrf1A6LnctfKEYZfHj0jJucZrS5HouVXnczztl/exec";
 
-            fetch(url, {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-                body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&subject=${encodeURIComponent(subject)}&message=${encodeURIComponent(message)}&timestamp=${encodeURIComponent(new Date().toLocaleString())}`,
-            })
-            .then(() => {
-                // Show success toast
-                var toast = new bootstrap.Toast(document.getElementById("successToast"));
-                toast.show();
-                document.getElementById("contactForm").reset();
-            })
-            .catch((err) => {
-                alert("Thank you for your message! We'll get back to you soon.");
-                console.log("Form submission attempted");
-                document.getElementById("contactForm").reset();
-            });
-        });
+    fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&subject=${encodeURIComponent(subject)}&message=${encodeURIComponent(message)}&timestamp=${encodeURIComponent(new Date().toLocaleString())}`,
+    })
+    .then(() => {
+        // Show success toast
+        var toast = new bootstrap.Toast(document.getElementById("successToast"));
+        toast.show();
+        document.getElementById("contactForm").reset();
+    })
+    .catch((err) => {
+        alert("Thank you for your message! We'll get back to you soon.");
+        console.log("Form submission attempted");
+        document.getElementById("contactForm").reset();
+    });
+});
+
 
         // Add random dots for background animation
         function createRandomDots() {
